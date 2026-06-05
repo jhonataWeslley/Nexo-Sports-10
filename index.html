@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexo Sports</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="loader">
+  <div class="loader-inner">
+    <img src="images/logo.png" style="width:160px;object-fit:contain;animation:quica 1s cubic-bezier(.36,.07,.19,.97) infinite">
+    <div class="loader-bar"></div>
+  </div>
+</div>
+
+<style>
+@keyframes quica {
+  0%,100% { transform:translateY(0) }
+  30%     { transform:translateY(-40px) }
+  50%     { transform:translateY(0) scaleX(1.15) scaleY(.85) }
+  65%     { transform:translateY(-20px) }
+  80%     { transform:translateY(0) }
+}
+</style>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">NEXO <span>SPORTS</span></div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('times')">Produtos</a></li>
+    <li><a href="#" onclick="showPage('sobre')">Sobre</a></li>
+    <li><a href="#" onclick="showPage('contato')">Contato</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home');toggleMenu()">Home</a>
+  <a href="#" onclick="showPage('times');toggleMenu()">Produtos</a>
+  <a href="#" onclick="showPage('sobre');toggleMenu()">Sobre</a>
+  <a href="#" onclick="showPage('contato');toggleMenu()">Contato</a>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5586994239722?text=Olá!%20Gostaria%20de%20ver%20os%20produtos%20da%20Nexo%20Sports!" target="_blank" class="wpp-float" title="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+  <span id="heroTagText">A Nexo Sports tá online!</span>
+</div>
+      <h1>SEM DESCULPAS. <span>SÓ EVOLUÇÃO.</span></h1>
+      <p>Os melhores artigos esportivos para quem treina pesado, compete sério ou apenas vive o jogo de verdade.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('times')">Ver Catálogo</button>
+        <button class="btn-outline" onclick="showPage('contato')">Falar no WhatsApp</button>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll <div class="scroll-line"></div></div>
+  </section>
+
+  <!-- CARROSSEL DE TIMES -->
+<section style="padding:80px 0;background:var(--black);overflow:hidden">
+  <div class="section-header" style="padding:0 5%">
+    <div class="section-tag">Times em Destaque</div>
+    <h2 class="section-title">NOSSOS <span>CLUBES</span></h2>
+  </div>
+
+  <div class="carrossel-wrap">
+    <div class="carrossel-track" id="carrosselTrack"></div>
+  </div>
+</section>
+
+  <section class="destaques">
+    <div class="section-header">
+      <div class="section-tag">Em Destaque</div>
+      <h2 class="section-title">PRODUTOS <span>PREMIUM</span></h2>
+      <p class="section-sub">Os produtos mais procurados pelos nossos clientes</p>
+    </div>
+    <div class="produtos-grid" id="destaquesGrid"></div>
+  </section>
+  
+  <section class="categorias">
+    <div class="section-header">
+      <div class="section-tag">Camisas de Times</div>
+      <h2 class="section-title">ESCOLHA SEU <span>CAMPEONATO</span></h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon">
+          <img src="images/simbBrasileirao.png" alt="Simbolo do Brasileirão">
+        </div>
+        <div class="cat-name">Brasileiro</div>
+        <div class="cat-count">9 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon">
+          <img src="images/simbPremier.png" alt="Simbolo da premier league">
+        </div>
+        <div class="cat-name">Premier League</div>
+        <div class="cat-count">1 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon"><img src="images/simbLaliga.png" alt=""></div>
+        <div class="cat-name">La Liga</div>
+        <div class="cat-count">2 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon"><img src="images/simbItaliano.png" alt=""></div>
+        <div class="cat-name">Serie A</div>
+        <div class="cat-count">2 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon"><img src="images/simbBudesliga.png" alt=""></div>
+        <div class="cat-name">Bundesliga</div>
+        <div class="cat-count">1 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon"><img src="images/simbSauditao.png" alt=""></div>
+        <div class="cat-name">Sauditão</div>
+        <div class="cat-count">1 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon"><img src="images/simbLeague1.png" alt=""></div>
+        <div class="cat-name">League 1</div>
+        <div class="cat-count">1 times</div>
+      </div>
+      <div class="cat-card" onclick="showPage('times')">
+        <div class="cat-icon"><img src="images/simbFifa.png" alt=""></div>
+        <div class="cat-name">Seleções</div>
+        <div class="cat-count">5 países</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">NEXO <span>SPORTS</span></div>
+        <p class="footer-desc">A maior vitrine de artigos esportivos da região. Qualidade, variedade e atendimento personalizado via WhatsApp.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('times')">produtos</a></li>
+          <li><a href="#" onclick="showPage('sobre')">Sobre</a></li>
+          <li><a href="#" onclick="showPage('contato')">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5586994239722" target="_blank">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/sportsnexo/" target="_blank">Instagram</a></li>
+          <li><a href="mailto:sportsnexo01@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Nexo Sports. Todos os direitos reservados.</p>
+      <p>Feito com <span>♥</span> para o esporte</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== TIMES PAGE ===== -->
+<div id="page-times" class="page">
+  <div class="page-hero">
+    <h1>CATÁLOGO <span>COMPLETO</span></h1>
+    <p>Navegue entre camisas de times ou roupas e acessórios fitness</p>
+  </div>
+
+  <div class="catalog-tabs">
+    <button class="catalog-tab active" id="tab-times" onclick="mudarAba('times')">
+     Camisas de Times
+    </button>
+    <button class="catalog-tab" id="tab-fitness" onclick="mudarAba('fitness')">
+     Roupas & Acessórios
+    </button>
+  </div>
+
+  <div class="search-bar-wrap">
+    <div class="search-bar">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input type="text" id="searchInput" placeholder="Buscar..." oninput="filterTimes(this.value)">
+    </div>
+  </div>
+
+  <div class="times-section">
+    <div id="timesContainer"></div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 Nexo Sports. Todos os direitos reservados.</p>
+      <p>Feito com <span>♥</span> para o futebol</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== TIME INDIVIDUAL PAGE ===== -->
+<div id="page-time" class="page">
+  <div class="time-banner" id="timeBanner">
+    <div class="time-banner-bg" id="timeBannerBg"></div>
+    <div class="time-banner-overlay"></div>
+    <div class="time-banner-content">
+      <div class="time-escudo-big" id="timeEscudoBig"></div>
+      <div class="time-info">
+        <h1 id="timeNome"></h1>
+        <p id="timeLiga"></p>
+      </div>
+    </div>
+  </div>
+  <div class="filtros" id="filtros">
+    <button class="filtro-btn active" onclick="filtrarCamisas('todos',this)">Todos</button>
+    <button class="filtro-btn" onclick="filtrarCamisas('titular',this)">Titular</button>
+    <button class="filtro-btn" onclick="filtrarCamisas('reserva',this)">Reserva</button>
+    <button class="filtro-btn" onclick="filtrarCamisas('terceiro',this)">Terceiro Uniforme</button>
+    <button class="filtro-btn" onclick="filtrarCamisas('treino',this)">Treino</button>
+  </div>
+  <section style="padding:48px 5%">
+    <div class="produtos-grid" id="timeProdutos"></div>
+  </section>
+  <div style="padding:0 5% 48px">
+    <button class="btn-outline" onclick="showPage('times')" style="display:inline-flex;align-items:center;gap:8px;font-size:.85rem">← Voltar aos Times</button>
+  </div>
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 Nexo Sports. Todos os direitos reservados.</p>
+      <p>Feito com <span>♥</span> para o futebol</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== SOBRE PAGE ===== -->
+<div id="page-sobre" class="page">
+  <div class="sobre-hero">
+  <!-- LOGO ANIMADA -->
+  <div class="logo-showcase">
+    <div class="logo-ring logo-ring-1"></div>
+    <div class="logo-ring logo-ring-2"></div>
+    <div class="logo-ring logo-ring-3"></div>
+    <div class="logo-glow"></div>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Nexo Sports" class="logo-animada">
+    </div>
+    <div class="logo-particles">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- TEXTO SOBRE -->
+  <div class="sobre-grid" style="margin-top:60px">
+    <div class="sobre-text">
+  <h2>SOMOS A <span>NEXO SPORTS</span></h2>
+  <p>A Nexo Sports foi criada para quem carrega a paixão pelo esporte no dia a dia. Seja vestindo a camisa do seu time, treinando em busca de evolução ou simplesmente vivendo o universo esportivo, acreditamos que cada produto representa uma história, uma conquista e uma paixão.</p>
+  <p>Por isso, selecionamos cuidadosamente nossos produtos para oferecer qualidade, variedade e praticidade, sempre com um atendimento próximo e dedicado.</p>
+  <p>Nosso objetivo é ser mais do que uma loja: queremos ser a ponte entre você e tudo aquilo que impulsiona sua paixão pelo esporte.</p>
+  <button class="btn-primary" onclick="showPage('contato')" style="margin-top:8px">Falar Conosco</button>
+</div>
+    <div class="sobre-stats">
+      <div class="stat-card"><div class="stat-num">500+</div><div class="stat-label">Modelos</div></div>
+      <div class="stat-card"><div class="stat-num">50+</div><div class="stat-label">Times</div></div>
+      <div class="stat-card"><div class="stat-num">2k+</div><div class="stat-label">Clientes</div></div>
+      <div class="stat-card"><div class="stat-num">5★</div><div class="stat-label">Avaliação</div></div>
+    </div>
+  </div>
+</div>
+  <div class="valores-grid">
+
+  <div class="valor-card">
+    <div class="valor-linha"></div>
+    <div class="valor-num">01</div>
+    <div class="valor-title">Paixão pelo Esporte</div>
+    <div class="valor-desc">Somos atletas e torcedores antes de tudo. Essa vivência guia cada decisão, da curadoria dos produtos ao atendimento.</div>
+  </div>
+
+  <div class="valor-card">
+    <div class="valor-linha"></div>
+    <div class="valor-num">02</div>
+    <div class="valor-title">Qualidade sem Concessão</div>
+    <div class="valor-desc">Cada produto passa por critérios rigorosos antes de entrar no catálogo. Só chega até você o que realmente vale a pena.</div>
+  </div>
+
+  <div class="valor-card">
+    <div class="valor-linha"></div>
+    <div class="valor-num">03</div>
+    <div class="valor-title">Atendimento Humano</div>
+    <div class="valor-desc">Nada de robôs ou processos frios. Você fala diretamente com quem entende do produto e se importa com a sua experiência.</div>
+  </div>
+
+  <div class="valor-card">
+    <div class="valor-linha"></div>
+    <div class="valor-num">04</div>
+    <div class="valor-title">Compromisso Real</div>
+    <div class="valor-desc">Do primeiro contato à entrega, estamos presentes. Nossa reputação é construída a cada pedido entregue com cuidado.</div>
+  </div>
+
+</div>
+   <footer style="margin-top: 60px">
+    <div class="footer-bottom">
+      <p>© 2025 Nexo Sports. Todos os direitos reservados.</p>
+      <p>Feito com <span>♥</span> para o futebol</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== CONTATO PAGE ===== -->
+<div id="page-contato" class="page">
+  <div class="contato-section">
+    <div class="contato-grid">
+      <div class="contato-info">
+        <h2>FALE COM A <span>NEXO</span></h2>
+        <p>Interessado em algum produto? Tem dúvidas sobre tamanhos ou modelos? Entre em contato — respondemos rapidinho!</p>
+        <div class="contato-items">
+          <div class="contato-item">
+            <div class="contato-item-icon"><img src="images/simbZap.png" alt=""></div>
+            <div class="contato-item-text">
+              <strong><a href="https://wa.me/5586994239722">Whatsapp</a></strong>
+              <span>(86) 9 9423-9722</span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-item-icon"><img src="images/simbInsta.png" alt=""></div>
+            <div class="contato-item-text">
+              <strong><a href="https://www.instagram.com/sportsnexo/">Instagram</a></strong>
+              <span>@sportsnexo</span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-item-icon"><img src="images/simbEmail.png" alt=""></div>
+            <div class="contato-item-text">
+              <strong><a href="mailto:sportsnexo01@gmail.com">Email</a></strong>
+              <span>sportsnexo01@gmail.com</span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-item-icon"><img src="images/simbTiktok.png" alt=""></div>
+            <div class="contato-item-text">
+              <strong><a href="https://www.tiktok.com/@sportsnexo">Tik Tok</a></strong>
+              <span>@sportsnexo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contato-form">
+  <div class="form-group">
+    <label>Nome</label>
+    <input id="form-nome" type="text" placeholder="Seu nome">
+  </div>
+  <div class="form-group">
+    <label>WhatsApp</label>
+    <input id="form-wpp" type="text" placeholder="(86) 9 9999-9999">
+  </div>
+  <div class="form-group">
+    <label>Mensagem</label>
+    <textarea id="form-msg" placeholder="Descreva o modelo, tamanho ou dúvida..."></textarea>
+  </div>
+  <button class="btn-primary" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+</div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 Nexo Sports. Todos os direitos reservados.</p>
+      <p>Feito com <span>♥</span> para o esporte!</p>
+    </div>
+  </footer>
+</div>
+
+<script src="javascript.js"></script>
+
+<script>
+const frases = [
+  'Vista sua paixão',
+  'Preços que cabem no seu bolso',
+  'Os Maiores Times do Mundo',
+  'Dry-Fit, Calções e Acessórios',
+  'Compre pelo WhatsApp',
+];
+
+let fraseAtual = 0;
+const el = document.getElementById('heroTagText');
+
+function alternarFrase() {
+  // saída
+  el.style.transition = 'opacity .4s, transform .4s';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(-8px)';
+
+  setTimeout(() => {
+    fraseAtual = (fraseAtual + 1) % frases.length;
+    el.textContent = frases[fraseAtual];
+
+    // entrada
+    el.style.transform = 'translateY(8px)';
+    el.style.opacity = '0';
+
+    requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }, 400);
+}
+
+setInterval(alternarFrase, 2800);
+</script>
+
+<script>
+function renderCarrossel() {
+  const track = document.getElementById('carrosselTrack');
+  // duplica a lista para o loop infinito funcionar
+  const lista = [...TIMES, ...TIMES];
+  track.innerHTML = lista.map(t => `
+    <div class="carrossel-item" onclick="showTime('${t.id}')">
+      <div class="escudo-carr">${t.escudo}</div>
+      <div class="nome-carr">${t.nome}</div>
+      <div class="liga-carr">${t.ligaCat}</div>
+    </div>
+  `).join('');
+}
+renderCarrossel();
+</script>
+
+<!-- MODAL IMAGEM -->
+<div id="modal-img" class="modal-img-wrap" onclick="fecharModal()">
+  <div class="modal-img-box" onclick="event.stopPropagation()">
+    <button class="modal-fechar" onclick="fecharModal()">✕</button>
+    <img id="modal-foto" src="" alt="">
+    <div class="modal-img-info">
+      <div class="modal-img-nome" id="modal-nome"></div>
+      <div class="modal-img-sub" id="modal-info"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARRINHO -->
+<div id="carrinho-wrap" class="carrinho-wrap" onclick="fecharCarrinho(event)">
+  <div class="carrinho-box">
+
+    <div class="carrinho-header">
+      <div class="carrinho-header-left">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .955-.343 1.087-.835l1.658-6.179A1.125 1.125 0 0017.6 6.75H6.107M7.5 14.25L5.106 5.272M7.5 14.25l-1.5 6m10.5-6l1.5 6"/>
+        </svg>
+        <h3>Meu Carrinho</h3>
+        <span class="carrinho-header-badge" id="carrinhoHeaderBadge">0</span>
+      </div>
+      <button class="carrinho-fechar" onclick="toggleCarrinho()">✕</button>
+    </div>
+
+    <div class="carrinho-lista" id="carrinho-lista">
+      <div class="carrinho-vazio" id="carrinho-vazio">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .955-.343 1.087-.835l1.658-6.179A1.125 1.125 0 0017.6 6.75H6.107M7.5 14.25L5.106 5.272M7.5 14.25l-1.5 6m10.5-6l1.5 6"/>
+        </svg>
+        <p>Seu carrinho está vazio</p>
+        <span>Adicione produtos para continuar</span>
+      </div>
+    </div>
+
+    <div class="carrinho-footer" id="carrinho-footer" style="display:none">
+      <div class="carrinho-total">
+        <span class="carrinho-total-label">Total de itens</span>
+        <span class="carrinho-total-num" id="carrinho-total-num">0 produtos</span>
+      </div>
+      <button class="btn-finalizar" onclick="enviarCarrinho()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Finalizar pelo WhatsApp
+      </button>
+      <button class="btn-limpar-carrinho" onclick="limparCarrinho()">
+        Limpar carrinho
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOTÃO FLUTUANTE CARRINHO -->
+<button class="carrinho-float" id="carrinhoFloat" onclick="toggleCarrinho()">
+  <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .955-.343 1.087-.835l1.658-6.179A1.125 1.125 0 0017.6 6.75H6.107M7.5 14.25L5.106 5.272M7.5 14.25l-1.5 6m10.5-6l1.5 6"/>
+  </svg>
+  <span class="carrinho-badge" id="carrinhoBadge" style="display:none">0</span>
+</button>
+</body>
+</html>
